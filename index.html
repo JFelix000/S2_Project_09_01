@@ -53,44 +53,55 @@
    <section>
       <h1>Conference Registration Form</h1>
       <p>Required Item (*)</p>
-
+<!-- The datalist does not have any closing option tags because they do not have to differentiate the actual text and the values. Each value comes up automatically as an option for the user to click the one they prefer. One thing to remember is that the name and the id need to be the same so it can be read correctly -->
       <form action="www.example.com/cg/register" method="POST">
-        <legend>Title</legend>
-        <label for="title"></label>
-        <input id="title" type="text">
+        <label for="title">Title</label>
+        <input name="titleList" id="title" list="titleList" type="text">
+        <datalist id="titleList">
+            <input type="text" name="titleList">
+            <option value="Mr." />
+            <option value="Mrs." />
+            <option value="Prof." />
+            <option value="Dr." />
+            <option value="Assist. Prof." />
+            <option value="Assoc. Prof." />
+        </datalist>
+<!-- Each labal and input would usually have a div so they can be easily styled; however, the instructions said specifically to make them alone like they are. Same as the datalist, they need to have the same name and inputs. The inputs that have required there actually required. Those without won't be. This comes in handy later with the CSS that we enter. -->
+        <label for="firstName">First Name*</label>
+        <input name="firstName" id="fnBox" type="text" required>
 
-        <legend>First Name*</legend>
-        <label for="firstName"></label>
-        <input id="firstName" type="text">
-
-        <legend>Last Name*</legend>
-        <label for="lastName"></label>
-        <input id="lastName" type="text">
+        <label for="lastName">Last Name*</label>
+        <input id="lnBox" name="lastName" type="text" required>
 <!-- ENDED HERE LAST SESSION -->
-        <legend>Address*</legend>
-        <label for="address"></label>
-        <input id="address" type="text">
+        <label for="address">Address*</label>
+        <textarea name="address" id="addBox" cols="30" rows="10"></textarea>
 
-        <legend>Company or University</legend>
-        <label for="company"></label>
-        <input id="company" type="text">
+        <label for="group">Company or University</label>
+        <input name="group" id="groupBox" type="text">
+<!-- This one has an email under type so it can see if the email is legit or not. -->
+        <label for="email">E-mail*</label>
+        <input name="email" id="mailBox" type="email" required>
+<!-- The phone number needs tel as a type to recognize the fact that it has numbers. The pattern is the section that validates the text and it can make sure it has the required digits. So putting the suggestion is not enough to stop people from entering the wrong information. -->
+        <label for="phoneNumber">Phone Number</label>
+        <input name="phoneNumber" id="phoneBox" type="tel" pattern="^\d{10}$|^(\(\d{3}\)\s*)?\d{3}[\s-]?\d{4}$ ">
+<!-- Placeholder is more of a suggestion whereas the pattern makes it mandatory to have those sets of digits or dash -->
+        <label for="acgipID">ACGIP Membership Number</label>
+        <input name="acgipID" id="idBox" type="text" placeholder="(nnn) nnn-nnnn" pattern="^acgip\-\d{6}$ ">
 
-        <legend>E-mail*</legend>
-        <label for="mail"></label>
-        <input id="mail" type="text">
-
-        <legend>Phone Number*</legend>
-        <label for=""></label>
-        <input type="text">
-
-        <legend>ACGIP Membership Number</legend>
-        <label for=""></label>
-        <input type="text">
-
-        <legend>Registration Category</legend>
-        <label for=""></label>
-        <input type="text">
+        <label for="registerType">Registration Category</label>
+        <select name="registerType" id="regList">
+            <option value="member">ACGIP Member ($695)</option>
+            <option value="non-Member">Non-Member ($795)</option>
+            <option value="student">Non-Member ($795)</option>
+            <option value="poster">“Poster ($95)</option>
+            <option value="guest">Guest ($35)</option>
+        </select>
+        <!-- These are making the actual button a real thing. This is given a value of continue so that it can show that text in the button while the type is calling in the button control -->
+        <p>
+            <input value="continue" type="submit">
+        </p>
     </form>
+
    </section>
    
    <aside>
